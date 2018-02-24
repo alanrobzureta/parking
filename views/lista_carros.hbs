@@ -6,7 +6,7 @@
                 <div class="panel-body">
                     <p>
                         <div class="row show-grid col-xs-12">                                
-                            <a href="#" class="btn btn-primary btn-flat"><i class="fa fa-fw fa-user-plus"></i> Cadastrar Turma</a>
+                            <a href="/carros/new" class="btn btn-primary btn-flat"><i class="fa fa-fw fa-user-plus"></i> Cadastrar novo carro</a>
                             <a href="#" class="remove_selecionados btn btn-danger btn-flat"><i class="fa fa-trash"></i> Excluir Selecionados</a>                            
                        </div>
                     </p>
@@ -17,15 +17,26 @@
                           <tr> 
                               <th>ID</th>
                               <th style="width: 60%;">Nome do motorista</th>                                   
-                              <th style="width: 35%;">Status</th>
+                              <th style="width: 15%;">Status</th>
+                              <th style="width: 15%;">Actions</th>
                           </tr> 
                     </thead> 
                     <tbody> 
+                    {{#each carros}}
                         <tr> 
-                            <td>1</td>
-                            <td>Alan Robson</td>                                   
-                            <td>DENTRO</td>
+                            <td>{{_id}}</td>
+                            <td>{{nome_motorista}}</td>                                   
+                            <td>{{status}}</td>
+                            <td>{{status}}</td>
+                            <td><a href="/carros/edit/{{_id}}" class="btn btn-info"><span class="glyphicon-edit">Edit</span></a></td>
+                            <td>
+                                <form action="/carros/{{_id}}" method="POST">
+                                    <input type="hidden" name="_method" value="delete"> 
+                                    <button type="submit" class="btn btn-danger"><span class="glyphicon-trash">Remover</span></button> 
+                                </form>                                
+                            </td>
                         </tr> 
+                    {{/each}}
                     </tbody> 
                 </table>                  
             </div>  

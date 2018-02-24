@@ -5,20 +5,21 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Formulário de alteração</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="#">
+                    <form class="form-horizontal" role="form" method="POST" action="/carros/{{carros._id}}">
+                        <input type="hidden" name="_method" value="put"> 
                         <fieldset>
                             <legend>Carros</legend>
                             <div class="form-group">
                                 <label for="nome_motorista" class="col-md-4 control-label">Nome da Motorista</label>
                                 <div class="col-md-6">
-                                    <input id="nome_motorista" type="text" class="form-control" name="nome_motorista" value="">                                    
+                                    <input id="nome_motorista" type="text" class="form-control" name="nome_motorista" value="{{carros.nome_motorista}}">                                    
                                 </div>
                             </div>                            
 
                             <div class="form-group">
                                 <label for="licenca_placa" class="col-md-4 control-label">Nº Licença</label>
                                 <div class="col-md-6">
-                                    <input id="licenca_placa" type="text" class="form-control" name="licenca_placa" value="">                                    
+                                    <input id="licenca_placa" type="text" class="form-control" name="licenca_placa" value="{{carros.licenca_placa}}">                                    
                                 </div>
                             </div>  
 
@@ -26,9 +27,16 @@
                                 <label for="status" class="col-md-4 control-label">Status</label>
                                 <div class="col-md-6">
                                     <select id="status" class="form-control" name="status">
-                                        <option value="-1" selected>Selecione...</option>
-                                        <option value="DENTRO">Dentro</option>
-                                        <option value="FORA">Fora</option>
+                                        {{#equals carros.status 'DENTRO'}}
+                                            <option value="-1">Selecione...</option>
+                                            <option value="DENTRO" selected>Dentro</option>
+                                            <option value="FORA">Fora</option>
+                                        {{/equals}}
+                                        {{#equals carros.status 'FORA'}}
+                                            <option value="-1">Selecione...</option>
+                                            <option value="DENTRO">Dentro</option>
+                                            <option value="FORA" selected>Fora</option>
+                                        {{/equals}}
                                     </select>
                                 </div>
                             </div>  
